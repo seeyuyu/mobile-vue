@@ -50,7 +50,6 @@ export default {
         width += 2 * sliderWidth
       }
       this.$refs.sliderGroup.style.width = width + 'px'
-
     },
     _initSlider () {
       this.slider = new BScroll(this.$refs.slider, {
