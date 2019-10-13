@@ -17,7 +17,7 @@
           <ul>
             <li @click="selectItem(item)" v-for="(item,index) in discList" class="item" :key="index">
               <div class="icon">
-                <img width="60" height="60" :src="item.imgurl">
+                <img width="60" height="60" v-lazy="item.imgurl">
               </div>
               <div class="text">
                 <h2 class="name" v-html="item.creator.name"></h2>
@@ -28,7 +28,7 @@
         </div>
       </div>
       <div class="loading-container" v-show="!discList.length">
-        <!-- <loading></loading> -->
+        <loading></loading>
       </div>
     </scroll>
     <router-view></router-view>
@@ -37,7 +37,7 @@
 
 <script type="text/ecmascript-6">
 // import Slider from 'base/slider/slider'
-// import Loading from 'base/loading/loading'
+import Loading from 'base/loading/loading'
 import Scroll from 'base/scroll/scroll'
 import { getRecommend, getDiscList } from 'api/recommend'
 // import { playlistMixin } from 'common/js/mixin'
@@ -99,7 +99,8 @@ export default {
     }
   },
   components: {
-    Scroll
+    Scroll,
+    Loading
   }
 }
 </script>
