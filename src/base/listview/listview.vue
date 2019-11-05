@@ -77,7 +77,7 @@ export default {
       this._scrollTo(anchorIndex)
     },
     _scrollTo (index) {
-      this.$ref.listview.scrollToElement(this.$ref.listGroup[index], 0)//第二个参数的含义：缓动函数动画时间
+      this.$ref.listview.scrollToElement(this.$ref.listGroup[index], 0)// 第二个参数的含义：缓动函数动画时间
     }
   },
   components: {
