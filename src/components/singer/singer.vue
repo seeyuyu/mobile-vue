@@ -37,6 +37,7 @@ export default {
           items: []
         }
       }
+      //  定义前十条为热门数据
       list.forEach((item, index) => {
         if (index < HOT_SINGER_LEN) {
           map.hot.items.push(new Singer({

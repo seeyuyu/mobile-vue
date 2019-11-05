@@ -88,7 +88,7 @@ export default {
       this.scroll && this.scroll.enable()
     },
     refresh () {
-      this.scroll && this.scroll.refresh()
+      this.scroll && this.scroll.refresh()//  this.scroll指向better-scroll的实例
     },
     scrollTo () {
       this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments)

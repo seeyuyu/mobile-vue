@@ -5,13 +5,14 @@ export function hasClass (el, className) {
 export function addClass (el, className) {
   el.classList.add(className)
 }
-
+//  有val就是set，没有就是get
 export function getData (el, name, val) {
   const prefix = 'data-'
+  name = prefix + name
   if (val) {
-    return el.setAttribute(prefix + name, val)
+    return el.setAttribute(name, val)
   }
-  return el.getAttribute(prefix + name)
+  return el.getAttribute(name)
 }
 
 let elementStyle = document.createElement('div').style
