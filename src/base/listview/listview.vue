@@ -42,9 +42,18 @@ const ANCHOR_HEIGHT = 18 // 根据css得来 字体高度+padding值
 export default {
   created () {
     this.touch = {}
+    this.listenScroll = true
+    this.listHeight = []
+    this.probeType = 3
     // 不加到data里的原因是：
     // 在data或props里的东西都会被vue添加getter和setter以观测变化会做监听，
     // 而这里的touch不需要监听只是为了两个函数之间相互获取到数据
+  },
+  data () {
+    return {
+      scrollY: -1,
+      currentIndex: 0
+    }
   },
   props: {
     data: {
@@ -76,8 +85,41 @@ export default {
       let anchorIndex = parseInt(this.touch.anchorIndex) + delta
       this._scrollTo(anchorIndex)
     },
+    scroll (pos) {
+      this.scrollY = pos.y
+    },
     _scrollTo (index) {
       this.$ref.listview.scrollToElement(this.$ref.listGroup[index], 0)// 第二个参数的含义：缓动函数动画时间
+    },
+    _calculateHeight () {
+      this.listHeight = []
+      const list = this.$ref.listGroup
+      let height = 0
+      this.listHeight.push(height)
+      for (let i = 0; i < list.length; i++) {
+        let item = list[i]
+        height += item.clientHeight
+        this.listHeight.push(height)
+      }
+    }
+  },
+  watch: {
+    data () {
+      setTimeout(() => {
+        this._calculateHeight()
+      }, 20)
+    }
+  },
+  scrollY (newY) {
+    const listHeight = this.listHeight
+    for (let i = 0; i < listHeight.length; i++) {
+      let height1 = listHeight[i]
+      let height2 = listHeight[i + 1]
+      if (!height2 || (-newY > height1 && -newY < height2)) {
+        this.currentIndex = i
+        console.log(this.currentIndex)
+        return
+      }
     }
   },
   components: {
