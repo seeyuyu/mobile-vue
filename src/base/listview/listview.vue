@@ -112,6 +112,10 @@ export default {
   },
   scrollY (newY) {
     const listHeight = this.listHeight
+    //当滚动到顶部，newY>0
+    if (newY > 0) {
+      this.currentIndex = 0
+    }
     for (let i = 0; i < listHeight.length; i++) {
       let height1 = listHeight[i]
       let height2 = listHeight[i + 1]
